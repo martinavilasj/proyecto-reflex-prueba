@@ -4,15 +4,15 @@ def navbar() -> rx.Component:
     return rx.hstack(
         rx.text(
             "Clientes",
-            font_size="2em",
+            font_size="0.8em",
         ),
         rx.text(
             "Planes",
-            font_size="2em",
+            font_size="0.8em",
         ),
         rx.text(
             "Finanzas",
-            font_size="2em",
+            font_size="0.8em",
         ),
         position="sticky",
         bg="grey",

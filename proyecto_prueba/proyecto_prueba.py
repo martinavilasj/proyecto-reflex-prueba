@@ -3,6 +3,7 @@
 import reflex as rx
 
 from proyecto_prueba.components.navbar import navbar
+from proyecto_prueba.clientes.formulario import *
 
 from rxconfig import config
 
@@ -11,7 +12,10 @@ class State(rx.State):
 
 
 def index() -> rx.Component:
-    return navbar()
-
+    return rx.vstack( 
+        navbar(),
+        form_nuevo_cliente(),
+        width="100%"
+    )
 app = rx.App()
 app.add_page(index)
