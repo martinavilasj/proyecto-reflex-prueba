@@ -10,7 +10,7 @@ class FormState(rx.State):
         self.form_data = form_data
 
 def form_nuevo_cliente() -> rx.Component:
-    return rx.center( 
+    return rx.vstack( 
         rx.form(
             rx.vstack(
                 rx.input(
@@ -48,4 +48,5 @@ def form_nuevo_cliente() -> rx.Component:
             reset_on_submit=True,
         ),
         width="50%",
+        padding="20px",
     ),
