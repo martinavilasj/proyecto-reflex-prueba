@@ -23,7 +23,7 @@ def index() -> rx.Component:
                         content="Acá se agregaria un cliente",
                         ),
                     collapsible=True,
-                    width=300px,
+                    width="300px",
                     type="single",
                     variant="soft",
                 ),
