@@ -9,4 +9,4 @@ source $SCRIPT_DIR/.venv/bin/activate
 pip install --upgrade pip
 pip install -r $SCRIPT_DIR/requirements.txt
 
-reflex run
+reflex run 

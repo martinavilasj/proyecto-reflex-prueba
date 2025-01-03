@@ -28,7 +28,7 @@ def form_nuevo_cliente() -> rx.Component:
                     name="documento",
                     required=True,
                 ),
-                rx.flex(
+                rx.hstack(
                     rx.text("Plan:"),
                     rx.select(
                         ["Basic", "Medium", "Premium"],
@@ -37,7 +37,7 @@ def form_nuevo_cliente() -> rx.Component:
                         required=True,
                     ),
                 ),
-                rx.input(
+                rx.text_area(
                     placeholder="Observaciones",
                     name="observaciones",
                     required=False,
@@ -47,6 +47,6 @@ def form_nuevo_cliente() -> rx.Component:
             on_submit=FormState.handle_submit,
             reset_on_submit=True,
         ),
-        width="50%",
-        padding="20px",
+        width="100%",
+        padding="10px",
     ),
