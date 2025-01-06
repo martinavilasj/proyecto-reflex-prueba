@@ -2,20 +2,14 @@
 
 import reflex as rx
 
-from proyecto_prueba.components.navbar import navbar
-from proyecto_prueba.clientes.clientes import *
-
 from rxconfig import config
+from proyecto_prueba.pages.clientes import index
+from proyecto_prueba.pages.finanzas import finanzas
+from proyecto_prueba.pages.planes import planes
 
 class State(rx.State):
     pass
 
 
-def index() -> rx.Component:
-    return rx.vstack( 
-        navbar(),
-        clientes(),
-        width="100%"
-    )
 app = rx.App()
-app.add_page(index)
+#app.add_page(index, finanzas)
