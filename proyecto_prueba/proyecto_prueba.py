@@ -7,9 +7,13 @@ from proyecto_prueba.pages.clientes import index
 from proyecto_prueba.pages.finanzas import finanzas
 from proyecto_prueba.pages.planes import planes
 
+import proyecto_prueba.api.api as api
+
 class State(rx.State):
     pass
 
 
 app = rx.App()
 #app.add_page(index, finanzas)
+
+app.api.add_api_route("/hello", api.hello)
