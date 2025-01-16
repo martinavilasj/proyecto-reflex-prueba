@@ -1,8 +1,5 @@
 import reflex as rx
-import proyecto_prueba.api.api as api
-
-class State(rx.State):
-    planes = api.planes()
+from proyecto_prueba.state.PageState import State
 
 def planes_page() -> rx.Component:
     return rx.vstack(
@@ -12,4 +9,5 @@ def planes_page() -> rx.Component:
         ),
         padding="20px",
         width="50%",
+        on_mount=State.obtener_planes
     )
