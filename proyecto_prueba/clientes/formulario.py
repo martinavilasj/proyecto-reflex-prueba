@@ -1,13 +1,5 @@
 import reflex as rx
-
-class FormState(rx.State):
-    form_data: dict = {}
-
-    @rx.event
-    def handle_submit(self, form_data: dict):
-        """Handle the form submit."""
-        print(form_data)
-        self.form_data = form_data
+from proyecto_prueba.state.PageState import State
 
 def form_nuevo_cliente() -> rx.Component:
     return rx.vstack( 
@@ -33,7 +25,7 @@ def form_nuevo_cliente() -> rx.Component:
                     rx.select(
                         ["Basic", "Medium", "Premium"],
                         default_value="Basic",
-                        name="planes",
+                        name="plan",
                         required=True,
                     ),
                 ),
@@ -44,7 +36,7 @@ def form_nuevo_cliente() -> rx.Component:
                 ),
                 rx.button("Submit", type="submit"),
             ),
-            on_submit=FormState.handle_submit,
+            on_submit=State.insertar_cliente,
             reset_on_submit=True,
         ),
         width="100%",

@@ -17,3 +17,10 @@ async def get_clientes() -> list:
         lista_clientes.append(cliente.to_dict())
 
     return lista_clientes
+
+def insertar_cliente(client_data):
+    print(client_data)
+    if SUPABASE_API.insert_client(client_data):
+        print("El cliente fue ingresado correctamente.")
+    else:
+        print("Error al ingresar el cliente.")

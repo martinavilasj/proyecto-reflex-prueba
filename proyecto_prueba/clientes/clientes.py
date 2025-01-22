@@ -19,8 +19,9 @@ def clientes() -> rx.Component:
         rx.data_table(
             data = State.clientes,
             columns = State.columnas,
+            search=True,
         ),
         padding="20px",
-        width="70%",
+        width="100%",
         on_mount=State.obtener_clientes
     )

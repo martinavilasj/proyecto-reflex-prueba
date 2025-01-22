@@ -32,3 +32,12 @@ class SupabaseAPI:
                 lista_clientes.append(cliente)
      
         return lista_clientes
+    
+    def insert_client(self, client_data:dict) -> bool:
+        response = self.supabase.table("clientes").insert(client_data).execute()
+        
+        if len(response.data) > 0:
+            return True
+        
+        return False
+
