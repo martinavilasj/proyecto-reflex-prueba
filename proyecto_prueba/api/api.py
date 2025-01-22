@@ -1,4 +1,5 @@
 from .SupabaseAPI import SupabaseAPI
+import proyecto_prueba.model.Client as Cliente
 
 SUPABASE_API = SupabaseAPI()
 
@@ -10,4 +11,9 @@ async def planes():
     return planes
 
 async def get_clientes() -> list:
-    return SUPABASE_API.get_clients()
+    lista_clientes = []
+    lista: list[Cliente] = SUPABASE_API.get_clients()
+    for cliente in lista:
+        lista_clientes.append(cliente.to_dict())
+
+    return lista_clientes

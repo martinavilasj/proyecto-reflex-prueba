@@ -1,6 +1,7 @@
 import os
 import dotenv
 from supabase import create_client, Client
+import proyecto_prueba.model.Client as Cliente
 
 class SupabaseAPI:
     
@@ -12,14 +13,22 @@ class SupabaseAPI:
 
 
 
-    def get_clients(self) -> list:
+    def get_clients(self) -> list[Cliente]:
 
         response = self.supabase.table("clientes").select("*").execute()
 
-        clientes = []
+        lista_clientes = []
 
         if len(response.data) > 0:
-            for cliente in response.data:
-                clientes.append(cliente)
+            for cte in response.data:
+                cliente = Cliente.Client(id = cte["id"],
+                                         fecha_ingreso = cte["created_at"],
+                                         nombre = cte["nombre"],
+                                         apellido= cte["apellido"],
+                                         documento= cte["documento"],
+                                         plan = cte["plan"],
+                                         observaciones = cte["observaciones"])
+                
+                lista_clientes.append(cliente)
      
-        return clientes
+        return lista_clientes

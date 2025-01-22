@@ -16,8 +16,11 @@ def clientes() -> rx.Component:
             color_scheme="grass",
             variant="soft",
         ),
-        #rx.text(State.clientes),
+        rx.data_table(
+            data = State.clientes,
+            columns = State.columnas,
+        ),
         padding="20px",
-        width="50%",
+        width="70%",
         on_mount=State.obtener_clientes
     )
