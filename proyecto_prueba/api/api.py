@@ -1,7 +1,9 @@
 from .SupabaseAPI import SupabaseAPI
-import proyecto_prueba.model.Client as Cliente
+from proyecto_prueba.model.Client import Client as Cliente
+from .MySQL import Mysql
 
 SUPABASE_API = SupabaseAPI()
+MYSQL_API = Mysql()
 
 def hello():
     return "Hola!"
@@ -12,7 +14,7 @@ async def planes():
 
 async def get_clientes() -> list:
     lista_clientes = []
-    lista: list[Cliente] = SUPABASE_API.get_clients()
+    lista: list[Cliente] = MYSQL_API.get_clients()
     for cliente in lista:
         lista_clientes.append(cliente.to_dict())
 
@@ -20,7 +22,16 @@ async def get_clientes() -> list:
 
 def insertar_cliente(client_data):
     print(client_data)
-    if SUPABASE_API.insert_client(client_data):
-        print("El cliente fue ingresado correctamente.")
+    
+    cliente = Cliente(nombre = client_data["nombre"],
+                      apellido = client_data["apellido"],
+                      documento = client_data["documento"],
+                      plan = client_data["plan"],
+                      observaciones = client_data["observaciones"])
+    
+    reponse = MYSQL_API.insert_client(cliente)
+
+    if reponse:
+        print (f"Cliente ingresado correctamente")
     else:
-        print("Error al ingresar el cliente.")
+        print("ERROR: Al ingresar al cliente")

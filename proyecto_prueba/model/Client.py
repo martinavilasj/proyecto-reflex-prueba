@@ -2,8 +2,8 @@ import reflex as rx
 
 class Client(rx.Base):
 
-    id: int
-    fecha_ingreso: str 
+    id: int = None
+    fecha_ingreso: str = None 
     nombre: str 
     apellido: str
     documento: int 
