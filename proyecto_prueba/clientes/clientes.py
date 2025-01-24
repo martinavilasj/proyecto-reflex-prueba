@@ -28,6 +28,10 @@ def clientes() -> rx.Component:
             color_scheme="grass",
             variant="soft",
         ),
+        rx.input(
+            placeholder="Buscar acá...",
+            on_change=lambda value: State.buscar_cliente(value),
+        ),
         rx.table.root(
             rx.table.header(
                 rx.table.row(
@@ -46,11 +50,6 @@ def clientes() -> rx.Component:
                 )
             )
         ),
-        #rx.data_table(
-        #    data = State.clientes,
-        #    columns = State.columnas,
-        #    search=True,
-        #),
         padding="20px",
         width="100%",
         on_mount=State.obtener_clientes
