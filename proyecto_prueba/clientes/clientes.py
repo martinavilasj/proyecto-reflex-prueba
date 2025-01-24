@@ -2,6 +2,18 @@ import reflex as rx
 
 from proyecto_prueba.clientes.formulario import *
 from proyecto_prueba.state.PageState import State
+from proyecto_prueba.model.Client import Client
+
+def mostrar_cliente(user: Client):
+    return rx.table.row(
+        rx.table.cell(user.id),
+        rx.table.cell(user.fecha_ingreso),
+        rx.table.cell(user.nombre),
+        rx.table.cell(user.apellido),
+        rx.table.cell(user.documento),
+        rx.table.cell(user.plan),
+        rx.table.cell(user.observaciones),
+    )
 
 def clientes() -> rx.Component:
     return rx.vstack(
@@ -16,11 +28,29 @@ def clientes() -> rx.Component:
             color_scheme="grass",
             variant="soft",
         ),
-        rx.data_table(
-            data = State.clientes,
-            columns = State.columnas,
-            search=True,
+        rx.table.root(
+            rx.table.header(
+                rx.table.row(
+                    rx.table.column_header_cell("id"),
+                    rx.table.column_header_cell("Fecha ingreso"),
+                    rx.table.column_header_cell("Nombre"),
+                    rx.table.column_header_cell("Apellido"),
+                    rx.table.column_header_cell("Documento"),
+                    rx.table.column_header_cell("Plan"),
+                    rx.table.column_header_cell("Observaciones"),
+                ),
+            ),
+            rx.table.body(
+                rx.foreach(
+                    State.clientes, mostrar_cliente
+                )
+            )
         ),
+        #rx.data_table(
+        #    data = State.clientes,
+        #    columns = State.columnas,
+        #    search=True,
+        #),
         padding="20px",
         width="100%",
         on_mount=State.obtener_clientes

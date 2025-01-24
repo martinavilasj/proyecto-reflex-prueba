@@ -1,12 +1,12 @@
 import reflex as rx 
 import proyecto_prueba.api.api as api
-import proyecto_prueba.model.Client as Client
+from proyecto_prueba.model.Client import Client
 from proyecto_prueba.routes import Route
 
 class State(rx.State):
     form_data: dict = {}
     planes: list
-    clientes: list
+    clientes: list[Client]
     columnas: list[str] = ["ID","Fecha ingreso","Nombre","Apellido","Documento","Plan","Observaciones"]
 
 

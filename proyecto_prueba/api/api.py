@@ -12,13 +12,8 @@ async def planes():
     planes=["Plan premium", "Plan Medio", "Plan Basico"]
     return planes
 
-async def get_clientes() -> list:
-    lista_clientes = []
-    lista: list[Cliente] = MYSQL_API.get_clients()
-    for cliente in lista:
-        lista_clientes.append(cliente.to_dict())
-
-    return lista_clientes
+async def get_clientes() -> list[Cliente]:
+    return MYSQL_API.get_clients()
 
 def insertar_cliente(client_data):
     print(client_data)
