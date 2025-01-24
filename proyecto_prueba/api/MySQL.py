@@ -42,25 +42,14 @@ class Mysql:
 
         return result
     
-    def get_clients(self) -> list[Cliente]:
-        lista_clientes = []
+    def get_clients(self) -> dict:
 
         cursor = self.mydb.cursor(dictionary=True)
 
         cursor.execute(f"SELECT * FROM {self.database}.clientes")
         result = cursor.fetchall()
-
-        for cte in result:
-           cliente = Cliente(id = cte["id"],
-                                    fecha_ingreso = cte["fecha_ingreso"].strftime('%Y-%m-%d %H:%M:%S'),
-                                    nombre = cte["nombre"],
-                                    apellido= cte["apellido"],
-                                    documento= cte["documento"],
-                                    plan = cte["plan"],
-                                    observaciones = cte["observaciones"])
-           lista_clientes.append(cliente) 
         
-        return lista_clientes
+        return result
     
     def insert_client(self, data:Cliente) -> bool:
         try:
@@ -77,3 +66,15 @@ class Mysql:
             return False
 
         print(self.conn.rowcount, "was inserted")
+    
+    def delete_client(self, id:int) -> bool:
+        try:
+            self.conn.execute(f"DELETE FROM {self.database}.clientes WHERE id = {id}")
+            
+            self.mydb.commit()
+
+            return True
+        
+        except ValueError as err:
+            print(err)
+            return False

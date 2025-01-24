@@ -9,6 +9,7 @@ class State(rx.State):
     clientes: list[Client]
     # Variable para evitar realizar consulta nuevamente a la base
     clientes_todos: list[Client]
+    usuario_borrar: int = -1
 
 
     async def obtener_planes(self):
@@ -21,8 +22,7 @@ class State(rx.State):
     @rx.event
     async def insertar_cliente(self, form_data: dict):
         api.insertar_cliente(form_data)
-        # no estaria funcionando
-        rx.redirect(Route.CLIENTES.value)
+        await self.obtener_clientes()
     
     @rx.event
     def buscar_cliente(self,texto_buscar):
@@ -34,3 +34,7 @@ class State(rx.State):
             ]
             self.clientes = resultado
 
+    @rx.event
+    async def borrar_cliente(self, id):
+        api.borrar_cliente(id)
+        await self.obtener_clientes()
