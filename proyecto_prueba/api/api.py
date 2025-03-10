@@ -1,8 +1,6 @@
-from .SupabaseAPI import SupabaseAPI
 from proyecto_prueba.model.Client import Client as Cliente
 from .MySQL import Mysql
 
-SUPABASE_API = SupabaseAPI()
 MYSQL_API = Mysql()
 
 def hello():
